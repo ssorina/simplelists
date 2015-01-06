@@ -74,7 +74,8 @@ class ListViewTest(TestCase):
     def test_uses_list_template(self):
         list_ = List.objects.create()
         response = self.client.get('lists/%d/' % list_.id)
-        self.assertTemplateUsed(response, 'list.html')
+        with self.assertTemplateUsed('list.html'):
+            render_to_string('list.html')
         #self.assertTemplateUsed(response, 'list.html')
 
 
