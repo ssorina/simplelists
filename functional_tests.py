@@ -35,6 +35,16 @@ class NewVisitorTest(unittest.TestCase):
         rows = table.find_elements_by_tag_name('tr')
         self.assertIn('1: Buy peacock feathers', [row.text for row in rows])
 
+        #go for a second input
+        inputbox = self.browser.find_element_by_id('id_list_table')
+        inputbox.send_keys('Use peacock feathers to make a fly')
+        inputbox.send_keys(Keys.ENTER)
+
+        #second input should be displayed in another row in the table
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('2: Use peacock feathers to make a fly', [row.text for row in rows])
+
         self.fail("Finish the test!")
 
 
